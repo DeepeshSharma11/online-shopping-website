@@ -4,8 +4,8 @@
     
 }
 body{
-    background-image: url("/image.avif");
-    background-size:cover;
+    background-image: url("/image.jpg");
+    background-size:contain;
 }
 header{
     position: fixed;       /* 🚨 This keeps it fixed */
@@ -36,12 +36,41 @@ header{
   margin: 0;
   padding: 0;
 }
+.dropdown-table{
+  display: none;
+}
+.dropdown{
+  position: relative;
+}
+.dropdown-table{
+  display: none;
+  position: absolute;
+  top: 100%;     /* Bilkul neeche aayega */
+  left: 50%;
+  justify-content: start;
+  align-content: start;
+  background: white;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  border-radius: 8px;
+
+  z-index: 1000; /* Optional: to avoid overlap issues */
+}
+.dropdown:hover .dropdown-table {
+  display: block;
+}
 
 .container a {
   text-decoration: none;
   color: black;
   padding: 25px;
 }
+.container a:hover{
+  font-weight: bold;
+  color: red;
+}
+
+
 .first_box{
     padding: 10px;
     background-color: rgb(192, 239, 232);
@@ -54,6 +83,10 @@ header{
     color: #763f0f;
     margin: 20px;
 }
+.first_box:hover{
+  background-color:rgb(103, 199, 234);
+  font-weight: bold;
+}
 .second_box{
     padding: 5px;
     background-color: rgb(192, 239, 232);
@@ -65,6 +98,10 @@ header{
     border-radius: 5px;
     color:crimson;
     margin: 20px;
+}
+.second_box:hover{
+  background-color:rgb(103, 199, 234);
+  font-weight: bold;
 }
 .hero {
   background-position: center;
