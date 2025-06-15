@@ -3,167 +3,237 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>online shoping</title>
-    <link rel="stylesheet" href="style.css">
+    <title>SDX Kard - Online Shopping Store</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="animations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <header>
-        <div class="privious_header">
-            <div class="first_box">Online Shopping Store </div>
-            <div class="container">
-                <ul>
-                    <li class="dropdown">
-                        <a href="home">home</a>
-                        <div class="dropdown-table">
-                            <a href="clothes.html">Clothes</a>
+    <!-- NAVBAR (same as clothing page) -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo">SDX Kard</div>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li class="nav-item dropdown">
+                        <a href="index.html" class="nav-link">Home</a>
+                        <div class="dropdown-menu">
+                            <a href="clothings.html">Clothes</a>
                             <a href="electronics.html">Electronics</a>
                             <a href="shoes.html">Shoes</a>
                             <a href="accessories.html">Accessories</a>
                         </div>
                     </li>
-                    <li  class="dropdown">
-                        <a href="shop">shop</a>
-                        <div class="dropdown-table">
-                            <a href="top-rated.html">Top Rated</a>
-                            <a href="trending.html">Trending Now</a>
-                            <a href="flash-sale.html">Flash Sale</a>
-                            <a href="shop-men.html">Shop's Men</a>
-                            <a href="shop-women.html">Shop's Women</a>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link">Shop <i class="fas fa-chevron-down" style="font-size:0.75em;"></i></a>
+                        <div class="dropdown-menu">
+                            <a href="clothings.html">Clothing & Footwear</a>
+                            <a href="electronics.html">Electronics</a>
+                            <a href="accessories.html">Accessories</a>
+                            <a href="trending.html">Trending</a>
+                            <a href="flash-sale.html">Offers</a>
                         </div>
                     </li>
-                    <li  class="dropdown">
-                        <a href="page">page</a>
-                        <div class="dropdown-table">
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link">Pages <i class="fas fa-chevron-down" style="font-size:0.75em;"></i></a>
+                        <div class="dropdown-menu">
                             <a href="about.html">About</a>
                             <a href="contact.html">Contact</a>
                             <a href="faqs.html">FAQs</a>
-                            <a href="returns.html">Return</a>
-                            <a href="privacy.html">Privacy </a>
+                            <a href="privacy.html">Privacy</a>
                         </div>
                     </li>
-                    <li  class="dropdown">
-                        <a href="hot deals">Hot Deals</a>
-                        <div class="dropdown-table">
-                            <a href="todays-deal.html">Today’s Deal</a>
-                            <a href="flash-sale.html">Flash Sale</a>
-                            <a href="bogo.html">Buy 1 Get 1</a>
-                            <a href="under499.html">Under ₹499</a>
-                            <a href="clearance.html">Clearance Sale</a>
-                            <a href="summer-sale.html">Summer Offer</a>
-                            <a href="combo.html">Combo Deals</a>
-                        </div>
-                    </li>
-                     <li  class="dropdown">
-                        <a href="elemants">elements</a>
-                        <div class="dropdown-table">
-                            <a href="buttons.html">Buttons</a>
-                            <a href="forms.html">Forms</a>
-                            <a href="cards.html">Cards</a>
-                            <a href="modals.html">Modals</a>
-                        </div>
+                    <li class="nav-item">
+                        <a href="todays-deal.html" class="nav-link">Deals</a>
                     </li>
                 </ul>
+            </nav>
+            <div class="auth-actions">
+                <button class="btn btn-signin" onclick="document.querySelector('.auth-section').scrollIntoView({behavior:'smooth'})">Sign In</button>
             </div>
-            <div class="second_box">sign in</div>
         </div>
     </header>
-    <main>
-        <section class="hero">
-            <div class="hero-wrapper">
-                <div class="hero-content">
-                    <h1>Welcome to SDX kard</h1>
-                    <p>Best Deals. Best Quality. Best You!</p>
-                    <button>Shop Now</button>
-                </div>
-                <div class="line">
-                    <h1>Start Selling With SDX kard Store</h1>
-                </div>
-                <div class="second_line">
-                    <h2><pre>Suitable for Digital Marketplace & websiteAssets Selling <br> website. Included With Awesome Dashboard.</pre></h2>
-                </div>
-            </div>
-        </section>
-    </main>
-    <main class="feature-section">
-        <div class="features-grid">
-            <div class="feature-box">
-                <div class="product-image">
-                    <img src="image2.webp" alt="Product 1">
-                    <a href="product1.html" class="show-btn">Consmetic</a>
-                </div>
-            </div>
 
-            <div class="feature-box">
-                <div class="product-image">
-                    <img src="image3.jpg" alt="Product 2">
-                    <a href="product2.html" class="show-btn">GYM Product</a>
-                </div>
-            </div>
-            <div class="feature-box">
-                <div class="product-image">
-                    <img src="image4.jpg" alt="Product 3">
-                    <a href="product3.html" class="show-btn">Home Decarotion</a>
-                </div>
-            </div>
-            <div class="feature-box">
-                <div class="product-image">
-                    <img src="image5.jpg" alt="Product 4">
-                    <a href="product4.html" class="show-btn">Clothers & footwear</a>
-                </div>
-            </div>
-            <div class="feature-box">
-                <div class="product-image">
-                    <img src="image6.png" alt="Product 5" background-size="auto">
-                    <a href="product4.html" class="show-btn">Medical store</a>
-                </div>
-            </div>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">Welcome to SDX Kard</h1>
+            <p class="hero-subtitle">Best Deals. Best Quality. Best You!</p>
+            <button class="btn btn-primary" onclick="window.location.href='shop.html'">Shop Now</button>
         </div>
-    </main>
-    <section class="signin-section">
-        <div class="signin-box">
-            <h2>Sign In</h2>
-            <form action="#" method="post">
-                <input type="text" placeholder="Name" required>
-                <input type="text" placeholder="Email" required>
-                <input type="password" placeholder="Password" required>
-                <button type="submit">Sign In</button>
-            </form>
-            <p>Don't have an account? <a href="#">Register</a></p>
+        <div class="hero-promo">
+            <h2 class="promo-title">Start Selling With SDX Kard Store</h2>
+            <p class="promo-text">Suitable for Digital Marketplace &amp; Assets Selling Website. Included With Awesome Dashboard.</p>
         </div>
     </section>
+
+    <!-- Featured Products Section -->
+    <section class="featured-section">
+        <div class="section-container">
+            <div class="featured-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="images/product1.webp" alt="Cosmetic Products" loading="lazy">
+                        <a href="CosmeticProducts.html" class="product-link">Cosmetics</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="images/product2.jpg" alt="GYM Products" loading="lazy">
+                        <a href="gym.html" class="product-link">GYM Products</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="images/product3.jpg" alt="Home Decoration" loading="lazy">
+                        <a href="home-decor.html" class="product-link">Home Decoration</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="images/product4.jpg" alt="Clothing & Footwear" loading="lazy">
+                        <a href="clothings.html" class="product-link">Clothing & Footwear</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="images/product5.png" alt="Medical Store" loading="lazy">
+                        <a href="medical.html" class="product-link">Medical Store</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sign In Section -->
+    <section class="auth-section">
+        <div class="auth-container">
+            <div class="auth-form">
+                <h2 class="form-title">Sign In</h2>
+                <form id="signin-form" autocomplete="off">
+                    <div class="form-group">
+                        <input type="text" placeholder="Name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" placeholder="Password" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                </form>
+                <p class="auth-alternate">Don't have an account? <a href="#" class="auth-link">Register</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rating Section -->
     <section class="rating-section">
-        <h2>Rate this Product</h2>
-        <div class="star-rating">
-            <span class="star" data-value="1">&#9733;</span>
-            <span class="star" data-value="2">&#9733;</span>
-            <span class="star" data-value="3">&#9733;</span>
-            <span class="star" data-value="4">&#9733;</span>
-            <span class="star" data-value="5">&#9733;</span>
+        <div class="section-container">
+            <h2 class="section-title">Rate this Product</h2>
+            <div class="star-rating" id="starRating">
+                <span class="star" data-value="1"><i class="far fa-star"></i></span>
+                <span class="star" data-value="2"><i class="far fa-star"></i></span>
+                <span class="star" data-value="3"><i class="far fa-star"></i></span>
+                <span class="star" data-value="4"><i class="far fa-star"></i></span>
+                <span class="star" data-value="5"><i class="far fa-star"></i></span>
+            </div>
+            <p class="rating-feedback" id="ratingFeedback"></p>
         </div>
-        <p class="rating-text"></p>
     </section>
 
+    <!-- Footer Navigation -->
+    <nav class="bottom-nav">
+        <a href="#"><i class="fas fa-home"></i></a>
+        <a href="#"><i class="fas fa-search"></i></a>
+        <a href="#"><i class="fas fa-shopping-cart"></i></a>
+        <a href="#"><i class="fas fa-user"></i></a>
+    </nav>
 
-<script src="script.js"></script>
+    <!-- FOOTER (same as clothing page) -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>SDX Kard</h4>
+                <ul>
+                    <li><a href="#">About us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Customer Service</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Shipping</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Categories</h4>
+                <ul>
+                    <li><a href="#">Clothing & Footwear</a></li>
+                    <li><a href="#">Electronics</a></li>
+                    <li><a href="#">Home & Living</a></li>
+                    <li><a href="#">Accessories</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Follow Us</h4>
+                <div class="footer-social">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            &copy; 2025 SDX Kard. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="scripts.js"></script>
+    <script src="js/rating.js"></script>
+    <script>
+        // Smooth dropdowns for navigation
+        document.querySelectorAll('.nav-item.dropdown').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                item.querySelector('.dropdown-menu').style.display = 'block';
+            });
+            item.addEventListener('mouseleave', () => {
+                item.querySelector('.dropdown-menu').style.display = 'none';
+            });
+        });
+
+        // Simple sign-in form handler (demo purpose)
+        document.getElementById('signin-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Sign in functionality is not implemented yet.');
+        });
+
+        // Star rating logic (if not in rating.js)
+        if (!window.ratingLoaded) {
+            const stars = document.querySelectorAll('.star-rating .star');
+            const feedback = document.getElementById('ratingFeedback');
+            stars.forEach(star => {
+                star.addEventListener('mouseover', () => {
+                    const val = +star.dataset.value;
+                    stars.forEach((s, i) => {
+                        s.querySelector('i').className = (i < val) ? 'fas fa-star' : 'far fa-star';
+                    });
+                });
+                star.addEventListener('click', () => {
+                    const val = +star.dataset.value;
+                    feedback.textContent = `Thank you for rating: ${val} star${val > 1 ? 's' : ''}!`;
+                });
+            });
+            document.querySelector('.star-rating').addEventListener('mouseleave', () => {
+                stars.forEach(s => s.querySelector('i').className = 'far fa-star');
+            });
+        }
+    </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
