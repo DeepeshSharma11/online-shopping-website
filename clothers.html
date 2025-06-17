@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clothing & Footwear | SDX Kard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+    :root {
+        --primary-color: #00bcd4;
+        --secondary-color: #ff6f00;
+        --accent-color: #ff4081;
+        --dark-color: #263238;
+        --light-color: #f5f5f5;
+        --text-color: #222;
+        --text-light: #777;
+        --border-radius: 10px;
+        --box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+        --transition: all .3s cubic-bezier(.4,0,.2,1);
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: #fafbfc;
+        color: var(--text-color);
+        margin: 0;
+    }
+
+    .app-container {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* NAVBAR STYLES */
+    .main-header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: #fff;
+        box-shadow: var(--box-shadow);
+    }
+    .header-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 64px;
+    }
+    .logo {
+        font-size: 1.7rem;
+        font-weight: bold;
+        color: var(--primary-color);
+        letter-spacing: 1px;
+    }
+    .main-nav ul {
+        display: flex;
+        gap: 18px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    .main-nav li {
+        position: relative;
+    }
+    .main-nav a {
+        color: var(--dark-color);
+        text-decoration: none;
+        font-weight: 500;
+        padding: 10px 14px;
+        border-radius: var(--border-radius);
+        transition: var(--transition);
+        font-size: 1.05rem;
+        display: block;
+    }
+    .main-nav a:hover,
+    .main-nav .active {
+        color: var(--secondary-color);
+        background: #f7f7f7;
+    }
+    .main-nav .dropdown-menu {
+        display: none;
+        position: absolute;
+        left: 0;
+        top: 110%;
+        background: #fff;
+        min-width: 160px;
+        box-shadow: var(--box-shadow);
+        border-radius: var(--border-radius);
+        z-index: 100;
+    }
+    .main-nav li:hover .dropdown-menu,
+    .main-nav li:focus-within .dropdown-menu {
+        display: block;
+    }
+    .main-nav .dropdown-menu a {
+        padding: 10px 18px;
+        border-radius: 0;
+    }
+    .main-nav .dropdown-menu a:hover {
+        background: #f5f5f5;
+        color: var(--secondary-color);
+    }
+    .auth-actions .btn {
+        background: var(--primary-color);
+        color: #fff;
+        border: none;
+        border-radius: 18px;
+        padding: 7px 18px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: var(--transition);
+        margin-left: 12px;
+    }
+    .auth-actions .btn:hover {
+        background: var(--secondary-color);
+    }
+
+    main.main-content {
+        flex: 1;
+        padding-bottom: 60px;
+    }
+
+    .category-hero {
+        background-size: cover;
+        background-position: center;
+        color: #fff;
+        text-align: center;
+        padding: 60px 15px 40px 15px;
+        position: relative;
+    }
+    .category-hero h1 {
+        font-size: 2.6rem;
+        margin-bottom: 7px;
+        letter-spacing: 1px;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .category-hero p {
+        font-size: 1.2rem;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.18);
+    }
+
+    .gender-selection, .clothing-categories, .size-filter, .category-products {
+        margin: 32px auto 0 auto;
+        max-width: 1200px;
+        padding: 0 16px;
+    }
+    .gender-tabs, .category-tabs, .size-options, .view-options {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .gender-tab, .category-tab, .size-option {
+        background: #fff;
+        border: 1.5px solid #eee;
+        color: var(--text-color);
+        padding: 8px 22px;
+        border-radius: 24px;
+        font-size: 1.03rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: var(--transition);
+        margin-bottom: 8px;
+    }
+    .gender-tab.active, .category-tab.active, .size-option.active {
+        background: var(--primary-color);
+        color: #fff;
+        border-color: var(--primary-color);
+        box-shadow: 0 2px 6px rgba(0,188,212,.11);
+    }
+    .gender-tab:hover, .category-tab:hover, .size-option:hover {
+        border-color: var(--secondary-color);
+        color: var(--secondary-color);
+    }
+
+    .size-filter h3 {
+        text-align: center;
+        color: var(--dark-color);
+        margin-bottom: 10px;
+        font-weight: 600;
+    }
+
+    .section-title {
+        margin: 0 0 18px 0;
+        text-align: center;
+        color: var(--dark-color);
+        font-size: 2rem;
+    }
+
+    /* Product grid/list */
+    .category-products {
+        margin-top: 40px;
+    }
+    .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-bottom: 18px;
+    }
+    .view-options {
+        gap: 6px;
+    }
+    .view-option {
+        background: #fff;
+        border: 1.5px solid #eee;
+        color: var(--primary-color);
+        padding: 8px 14px;
+        border-radius: 50%;
+        font-size: 1.08rem;
+        cursor: pointer;
+        transition: var(--transition);
+    }
+    .view-option.active {
+        background: var(--secondary-color);
+        color: #fff;
+        border-color: var(--secondary-color);
+    }
+    .view-option:hover {
+        color: var(--secondary-color);
+        border-color: var(--secondary-color);
+    }
+    .product-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 28px;
+        margin-top: 10px;
+    }
+    .product-list {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        margin-top: 10px;
+    }
+    .product-card {
+        background: #fff;
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+        overflow: hidden;
+        transition: var(--transition);
+        display: flex;
+        flex-direction: column;
+        min-height: 340px;
+        position: relative;
+        opacity: 0;
+        transform: translateY(40px);
+        animation: fadeInCard 0.6s forwards;
+    }
+    .product-card.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .product-card:hover, .product-card:focus-within {
+        box-shadow: 0 7px 24px rgba(0,0,0,0.13);
+        transform: scale(1.02);
+    }
+    .product-image {
+        width: 100%;
+        height: 180px;
+        background: #f5f6fa;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+    .product-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform .25s;
+    }
+    .product-card:hover .product-image img {
+        transform: scale(1.05);
+    }
+    .product-info {
+        padding: 18px 16px 12px 16px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .product-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 7px;
+        color: var(--dark-color);
+    }
+    .product-meta {
+        color: var(--text-light);
+        font-size: 0.97rem;
+        margin-bottom: 6px;
+    }
+    .product-price {
+        color: var(--secondary-color);
+        font-size: 1.07rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+    .btn-buy {
+        background: var(--primary-color);
+        color: #fff;
+        border: none;
+        border-radius: 20px;
+        padding: 8px 14px;
+        font-size: 1rem;
+        cursor: pointer;
+        margin-top: auto;
+        transition: var(--transition);
+    }
+    .btn-buy:hover {
+        background: var(--secondary-color);
+    }
+
+    /* List view customization */
+    .product-list .product-card {
+        flex-direction: row;
+        align-items: stretch;
+        min-height: 140px;
+        height: auto;
+    }
+    .product-list .product-image {
+        width: 140px;
+        height: 100%;
+        flex-shrink: 0;
+    }
+    .product-list .product-info {
+        padding: 16px 12px;
+        flex: 1;
+    }
+
+    /* Seasonal Collection */
+    .seasonal-collection {
+        margin: 48px auto 0 auto;
+        max-width: 1000px;
+        padding: 0 16px;
+    }
+    .collection-banner {
+        background: linear-gradient(90deg,#fffde4 0%,#ffe9e4 100%);
+        border-radius: var(--border-radius);
+        padding: 40px 16px;
+        text-align: center;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    }
+    .collection-banner h2 {
+        font-size: 2rem;
+        color: var(--secondary-color);
+        margin-bottom: 8px;
+    }
+    .collection-banner p {
+        color: var(--dark-color);
+        margin-bottom: 20px;
+    }
+    .collection-banner .btn {
+        padding: 10px 34px;
+        background: var(--primary-color);
+        color: #fff;
+        border: none;
+        border-radius: 22px;
+        font-weight: bold;
+        font-size: 1.08rem;
+        cursor: pointer;
+        transition: var(--transition);
+    }
+    .collection-banner .btn:hover {
+        background: var(--secondary-color);
+    }
+
+    /* Bottom Navigation */
+    .bottom-nav {
+        height: 56px;
+        background: #fff;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.04);
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 100;
+    }
+
+    /* FOOTER */
+    .footer {
+        background: #222;
+        color: #fff;
+        padding: 36px 0 18px 0;
+        text-align: center;
+        margin-top: 48px;
+    }
+    .footer .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 18px;
+        padding: 0 18px;
+    }
+    .footer-column {
+        flex: 1 1 180px;
+        min-width: 160px;
+        text-align: left;
+    }
+    .footer-column h4 {
+        margin-bottom: 10px;
+        color: var(--primary-color);
+        font-size: 1.07rem;
+        letter-spacing: 1px;
+    }
+    .footer-column ul {
+        list-style: none;
+        padding: 0;
+        font-size: 0.98rem;
+        color: #e0e0e0;
+    }
+    .footer-column ul li {
+        margin-bottom: 8px;
+    }
+    .footer-column ul li a {
+        color: #e0e0e0;
+        text-decoration: none;
+        transition: color .2s;
+    }
+    .footer-column ul li a:hover {
+        color: var(--secondary-color);
+    }
+    .footer-social {
+        margin-top: 16px;
+    }
+    .footer-social a {
+        color: #fff;
+        margin: 0 8px;
+        font-size: 1.2rem;
+        transition: color .2s;
+    }
+    .footer-social a:hover {
+        color: var(--secondary-color);
+    }
+    .footer-copyright {
+        margin-top: 24px;
+        font-size: 0.97rem;
+        color: #aaa;
+    }
+    a{
+        text-decoration: none;
+    }
+
+    /* Animations */
+    @keyframes fadeInCard {
+        to { opacity: 1; transform: translateY(0);}
+    }
+
+    /* Responsive */
+    @media (max-width: 1100px) {
+        .header-container { flex-direction: column; height: auto; padding: 8px 6vw;}
+    }
+    @media (max-width: 900px) {
+        .gender-selection, .clothing-categories, .size-filter, .category-products, .seasonal-collection {
+            max-width: 97vw;
+        }
+        .product-grid {
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 18px;
+        }
+        .category-hero {
+            padding-top: 36px;
+            padding-bottom: 28px;
+        }
+        .footer-content { flex-direction: column; text-align: center;}
+        .footer-column { min-width: 0;}
+    }
+    @media (max-width: 600px) {
+        .category-hero h1 { font-size: 2rem; }
+        .product-grid { gap: 9px; }
+        .category-hero { padding-top: 24px; padding-bottom: 14px; }
+        .section-title { font-size: 1.2rem;}
+        .collection-banner { padding: 16px 4px;}
+        .product-card { min-height: 220px; }
+        .footer { padding: 24px 0 10px 0;}
+    }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+
+        <!-- NAVBAR -->
+        <header class="main-header">
+            <div class="header-container">
+                <div class="logo">SDX Kard</div>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li>
+                            <a href="#">Shop <i class="fas fa-chevron-down" style="font-size:0.75em;"></i></a>
+                            <div class="dropdown-menu">
+                                <a href="clothing.html" class="active">Clothing & Footwear</a>
+                                <a href="#">Electronics</a>
+                                <a href="#">Accessories</a>
+                                <a href="#">Trending</a>
+                                <a href="#">Offers</a>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#">Pages <i class="fas fa-chevron-down" style="font-size:0.75em;"></i></a>
+                            <div class="dropdown-menu">
+                                <a href="#">About</a>
+                                <a href="#">Contact</a>
+                                <a href="#">FAQs</a>
+                                <a href="#">Privacy</a>
+                            </div>
+                        </li>
+                        <li><a href="#">Deals</a></li>
+                    </ul>
+                </nav>
+                <div class="auth-actions">
+                    <button class="btn" ><a href="index.html#sign_section" style="color:white;">Sign in </a></button>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <!-- Category Hero -->
+            <section class="category-hero" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=1200&q=80')">
+                <h1>Clothing & Footwear</h1>
+                <p>Style for every occasion</p>
+            </section>
+
+            <!-- Gender Selection -->
+            <section class="gender-selection">
+                <div class="gender-tabs">
+                    <button class="gender-tab active" data-gender="all">All</button>
+                    <button class="gender-tab" data-gender="men">Men</button>
+                    <button class="gender-tab" data-gender="women">Women</button>
+                    <button class="gender-tab" data-gender="kids">Kids</button>
+                </div>
+            </section>
+
+            <!-- Clothing Categories -->
+            <section class="clothing-categories">
+                <h2 class="section-title">Shop by Category</h2>
+                <div class="category-tabs">
+                    <button class="category-tab active" data-category="all">All</button>
+                    <button class="category-tab" data-category="tops">Tops</button>
+                    <button class="category-tab" data-category="bottoms">Bottoms</button>
+                    <button class="category-tab" data-category="footwear">Footwear</button>
+                    <button class="category-tab" data-category="accessories">Accessories</button>
+                </div>
+            </section>
+
+            <!-- Size Filter -->
+            <section class="size-filter">
+                <h3>Filter by Size</h3>
+                <div class="size-options">
+                    <button class="size-option">XS</button>
+                    <button class="size-option">S</button>
+                    <button class="size-option active">M</button>
+                    <button class="size-option">L</button>
+                    <button class="size-option">XL</button>
+                    <button class="size-option">XXL</button>
+                </div>
+            </section>
+
+            <!-- Featured Products -->
+            <section class="category-products">
+                <div class="section-header">
+                    <h2 class="section-title">New Arrivals</h2>
+                    <div class="view-options">
+                        <button class="view-option active" data-view="grid">
+                            <i class="fas fa-th"></i>
+                        </button>
+                        <button class="view-option" data-view="list">
+                            <i class="fas fa-list"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="product-grid"></div>
+            </section>
+            
+            <!-- Seasonal Collection -->
+            <section class="seasonal-collection">
+                <div class="collection-banner">
+                    <h2>Summer Collection</h2>
+                    <p>Lightweight fabrics for hot days</p>
+                    <button class="btn btn-primary">Shop Now</button>
+                </div>
+            </section>
+        </main>
+        
+        <!-- Footer Navigation -->
+        <nav class="bottom-nav">
+            <a href="#"><i class="fas fa-home"></i></a>
+            <a href="#"><i class="fas fa-search"></i></a>
+            <a href="#"><i class="fas fa-shopping-cart"></i></a>
+            <a href="#"><i class="fas fa-user"></i></a>
+        </nav>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>SDX Kard</h4>
+                    <ul>
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Shipping</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="#">Clothing & Footwear</a></li>
+                        <li><a href="#">Electronics</a></li>
+                        <li><a href="#">Home & Living</a></li>
+                        <li><a href="#">Accessories</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Follow Us</h4>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                &copy; 2025 SDX Kard. All rights reserved.
+            </div>
+        </footer>
+    </div>
+
+    <script>
+    // Demo product data
+    const PRODUCTS = [
+        {
+            id: 1,
+            title: "Men Shirt Solid Imported Formal Shirts For Men Trendy Glamorous Men Shirt",
+            gender: "men",
+            category: "tops",
+            size: ["S", "M", "L", "XL"],
+            price: "₹249",
+            image: "/images/clothers/shirt1.webp"
+        },
+        {
+            id: 2,
+            title: "RD CLOTHING SOLID PATTERN SHIRT",
+            gender: "women",
+            category: "tops",
+            size: ["XS", "S", "M", "L"],
+            price: "₹269",
+            image: "/images/clothers/shirt2.webp"
+        },
+        {
+            id: 3,
+            title: "man/boy t shirt best quality pack of 2no",
+            gender: "kids",
+            category: "all",
+            size: ["XS", "S", "M"],
+            price: "₹189",
+            image: "/images/clothers/t-shirt1.webp"
+        },
+        {
+            id: 4,
+            title: "Product name cannot be different for the different sizes of the same product",
+            gender: "men",
+            category: "bottoms",
+            size: ["M", "L", "XL", "XXL"],
+            price: "₹299",
+            image: "/images/clothers/t-shirt2.webp"
+        },
+        {
+            id: 5,
+            title: "Men's collar Shirt",
+            gender: "women",
+            category: "all",
+            size: ["S", "M", "L"],
+            price: "₹299",
+            image: "/images/clothers/t-shirt3.webp"
+        },
+        {
+            id: 6,
+            title: "Mens polo collar tshirt",
+            gender: "all",
+            category: "accessories",
+            size: [],
+            price: "₹299",
+            image: "/images/clothers/t-shirt4.webp"
+        },
+        {
+            id: 7,
+            title: "TRENDY MEN JACKET",
+            gender: "all",
+            category: "accessories",
+            size: [],
+            price: "₹449",
+            image: "/images/clothers/jacket1.webp"
+        },
+        {
+            id: 8,
+            title: "NEW LOOK DENIM MEN JACKET FOR BOYS/MEN",
+            gender: "all",
+            category: "accessories",
+            size: [],
+            price: "₹399",
+            image: "/images/clothers/jacket2.webp"
+        },
+        {
+            id: 9,
+            title: "Polyester Lycra Jacket for Men stylish Winter jackets",
+            gender: "all",
+            category: "accessories",
+            size: [],
+            price: "₹399",
+            image: "/images/clothers/jacket3.webp"
+        },
+        {
+            id: 10,
+            title: "FANCY CHECK'S MEN'S KURTA SET",
+            gender: "all",
+            category: "accessories",
+            size: [],
+            price: "₹329",
+            image: "/images/clothers/kurta1.webp"
+        },
+        {
+            id: 11,
+            title: "Men's Boys Printed Kurta only Kurta",
+            gender: "all",
+            category: "accessories",
+            size: [],
+            price: "₹399",
+            image: "/images/clothers/kurta2.webp"
+        },
+        {
+            id: 12,
+            title: "Men's Embroidered Cotton Kurta Pajama Set",
+            gender: "all",
+            category: "accessories",
+            size: [],
+            price: "₹339",
+            image: "/images/clothers/kurta3.webp"
+        },
+        {
+            id: 13,
+            title: "M M ETHNICS PRESENTING NEW RICH CHFFORN FENDY SOFT FABRIC ALPNG RICH BORDER LOOK SAREE WITH BLOUSE",
+            gender: "all",
+            gender: "women",
+            category: "accessories",
+            size: [],
+            price: "₹599",
+            image: "/images/clothers/saree1.webp"
+        },
+        {
+            id: 14,
+            title: "new saree collection,new model sarees,mirror work sarees ,gerogette saree plain,cut work saree",
+            gender: "all",
+            gender: "women",
+            category: "accessories",
+            size: [],
+            price: "₹539",
+            image: "/images/clothers/saree2.webp"
+        },
+        {
+            id: 15,
+            title: "Bhagalpuri Art Silk yellow Lace border Matka Print Saree With Blouse",
+            gender: "all",
+            gender: "women",
+            category: "accessories",
+            size: [],
+            price: "₹349",
+            image: "/images/clothers/saree3.webp"
+        },
+        {
+            id: 16,
+            title: "Elegant Kanjeevaram Cream Rich Pallu Saree",
+            gender: "all",
+            gender: "women",
+            category: "accessories",
+            size: [],
+            price: "₹601",
+            image: "/images/clothers/saree4.webp"
+        },
+        {
+            id: 17,
+            title: "READY TO WEAR LYCRA FANCY PARTY WEAR SAREE",
+            gender: "all",
+            gender: "women",
+            category: "accessories",
+            size: [],
+            price: "₹349",
+            image: "/images/clothers/saree5.webp"
+        },
+        {
+            id: 18,
+            title: "Chitrarekha Attractive Kurtis",
+            gender: "all",
+            gender: "women",
+            category: "accessories",
+            size: [],
+            price: "₹339",
+            image: "/images/clothers/kurtis1.webp"
+        },
+        {
+            id: 19,
+            title: "Yagnik Fashion New Festival and Daily Wear Kurta Set Pack of 2",
+            gender: "all",
+            gender: "women",
+            category: "accessories",
+            size: [],
+            price: "₹429",
+            image: "/images/clothers/kurtis3.webp"
+        },
+        {
+            id: 20,
+            title: "Free Size Lehenga & Unstitched Blouse with Dupatta",
+            gender: "all",
+            gender: "women",
+            category: "accessories",
+            size: [],
+            price: "₹499",
+            image: "/images/clothers/lehenga1.webp"
+        },
+        {
+            id: 21,
+            title: "Trendy Pretty Lehenga Self Design Semi Stitched Lehenga Choli (Purple)",
+            gender: "all",
+            gender: "women",
+            category: "accessories",
+            size: [],
+            price: "₹399",
+            image: "/images/clothers/lehenga2.webp"
+        },
+        {
+            id: 22,
+            title: "NET EMBROIDERED LEHENGA CHOLI",
+            gender: "all",
+            gender: "women",
+            category: "accessories",
+            size: [],
+            price: "₹699",
+            image: "/images/clothers/lehenga3.webp"
+        },
+        {
+            id: 23,
+            title: "Tank Top white Black trending Tshirt",
+            gender: "all",
+            gender: "women",
+            category: "accessories",
+            size: [],
+            price: "₹199",
+            image: "/images/clothers/w_tshirt1.webp"
+        },
+        {
+            id: 24,
+            title: "Mannat Fashion Printed Rayon Short Kurta For Women And Girls",
+            gender: "all",
+            gender: "women",
+            category: "accessories",
+            size: [],
+            price: "₹199",
+            image: "/images/clothers/w_tshirt2.webp"
+        },
+        {
+            id: 25,
+            title: "Stylish Fashionista Women Tops & Tunics",
+            gender: "all",
+            gender: "women",
+            category: "accessories",
+            size: [],
+            price: "₹199",
+            image: "/images/clothers/w_tshirt3.webp"
+        },
+        {
+            id: 26,
+            title: "trendy retro women women trouser",
+            gender: "all",
+            gender: "women",
+            category: "accessories",
+            size: [],
+            price: "₹249",
+            image: "/images/clothers/w_pant1.webp"
+        },
+        {
+            id: 27,
+            title: "CODYFOX Women Retro Trouser",
+            gender: "all",
+            gender: "women",
+            category: "accessories",
+            size: [],
+            price: "₹249",
+            image: "/images/clothers/w_pant2.webp"
+        },
+        {
+            id: 28,
+            title: "Comfy Retro Women Jeans",
+            gender: "all",
+            gender: "women",
+            category: "accessories",
+            size: [],
+            price: "₹249",
+            image: "/images/clothers/w_pant3.webp"
+        },
+        {
+            id: 29,
+            title: "Attractive Women's Pure Nightdresses nightgown cotton printed nighty",
+            gender: "all",
+            gender: "women",
+            category: "accessories",
+            size: [],
+            price: "₹269",
+            image: "/images/clothers/w_image1.webp"
+        },
+        {
+            id: 30,
+            title: "Trending Printed Women nighty,nightdress,maxi for female nighty",
+            gender: "all",
+            gender: "women",
+            category: "accessories",
+            size: [],
+            price: "₹259",
+            image: "/images/clothers/w_image2.webp"
+        },
+        {
+            id: 31,
+            title: "Menarik Full Length Sinker Round Neck Nighty for Women - Navy",
+            gender: "all",
+            gender: "women",
+            category: "accessories",
+            size: [],
+            price: "₹399",
+            image: "/images/clothers/w_image3.webp"
+        },
+        {
+            id: 32,
+            title: "BYOUBRA Stylish Sport Bra Pack Of 6",
+            gender: "all",
+            gender: "women",
+            category: "accessories",
+            size: [],
+            price: "₹299",
+            image: "/images/clothers/w_image4.webp"
+        },
+        {
+            id: 33,
+            title: "NEW TRENDY SIMPLE Burkha CHUN SLEEVES ABAYA BURQA WITH BELT (WITHOUT SHAWL)",
+            gender: "all",
+            gender: "women",
+            category: "accessories",
+            size: [],
+            price: "₹389",
+            image: "/images/clothers/w_image5.webp"
+        },
+        {
+            id: 34,
+            title: "(WITHOUT HIJAB) Firdous Abaya with Unique Sleeve Detail (BEIGE)",
+            gender: "all",
+            gender: "women",
+            category: "accessories",
+            size: [],
+            price: "₹399",
+            image: "/images/clothers/w_image6.webp"
+        },
+        {
+            id: 35,
+            title: "Agile Comfy Girls Frocks & Dresses",
+            gender: "all",
+            gender: "kids",
+            category: "accessories",
+            size: [],
+            price: "₹199",
+            image: "/images/clothers/kid_image1.webp"
+        },
+        {
+            id: 36,
+            title: "Cutiepie Stylus Girls Frocks & Dresses",
+            gender: "all",
+            gender: "kids",
+            category: "accessories",
+            size: [],
+            price: "₹199",
+            image: "/images/clothers/kid_image2.webp"
+        },
+        {
+            id: 37,
+            title: "KiCO ® Kids T-shirt and Shorts Set ( Pack of 1 )",
+            gender: "all",
+            gender: "kids",
+            category: "accessories",
+            size: [],
+            price: "₹199",
+            image: "/images/clothers/kid_image3.webp"
+        },
+        {
+            id: 38,
+            title: "Tinkle Trendy Boys Top & Bottom Sets",
+            gender: "all",
+            gender: "kids",
+            category: "accessories",
+            size: [],
+            price: "₹299",
+            image: "/images/clothers/kid_image4.webp"
+        },
+        {
+            id: 39,
+            title: "Free Fire Kids Half Tshirt for boys and girls kidsHalf Tshirt Black Colour",
+            gender: "all",
+            gender: "kids",
+            category: "accessories",
+            size: [],
+            price: "₹249",
+            image: "/images/clothers/kid_image5.webp"
+        },
+        {
+            id: 40,
+            title: "Lucknawi Kurta Pajama Set for Boys",
+            gender: "all",
+            gender: "kids",
+            category: "accessories",
+            size: [],
+            price: "₹249",
+            image: "/images/clothers/kid_image6.webp"
+        },
+        {
+            id: 41,
+            title: "Boys Kurta Set,#_boys dress #_sherwani for kids",
+            gender: "all",
+            gender: "kids",
+            category: "accessories",
+            size: [],
+            price: "₹249",
+            image: "/images/clothers/kid_image7.webp"
+        },
+        {
+            id: 42,
+            title: "GIFT WALLET WITH 3d ALPHABETIC PRINT, 7 ATM CARD POCKET",
+            gender: "all",
+            category: "accessories",
+            category: "footwear",
+            size: [],
+            price: "₹199",
+            image: "/images/clothers/footwear.webp"
+        },
+        {
+            id: 43,
+            title: "Women Handbag",
+            gender: "all",
+            category: "footwear",
+            category: "accessories",
+            size: [],
+            price: "₹249",
+            image: "/images/clothers/footwear1.webp"
+        },
+        {
+            id: 44,
+            title: "Graceful Stylish Slingbags Luxury High Quality PU Leather Women Shoulder Bag (White)",
+            gender: "all",
+            category: "accessories",
+            category: "footwear",
+            size: [],
+            price: "₹299",
+            image: "/images/clothers/footwear2.webp"
+        },
+        {
+            id: 45,
+            title: "small wallte for men&women(cardholder)",
+            gender: "all",
+            category: "accessories",
+            category: "footwear",
+            size: [],
+            price: "₹249",
+            image: "/images/clothers/footwear3.webp"
+        },
+        {
+            id: 46,
+            title: "fdxrt",
+            gender: "all",
+            category: "accessories",
+            category: "footwear",
+            size: [],
+            price: "₹269",
+            image: "/images/clothers/footwear4.webp"
+        },
+        {
+            id: 47,
+            title: "Men's Stylish Sling Bag Top Shoulder Crossbody Bag",
+            gender: "all",
+            category: "accessories",
+            category: "footwear",
+            size: [],
+            price: "₹249",
+            image: "/images/clothers/footwear5.webp"
+        },
+        {
+            id: 48,
+            title: "Unisex Sling Bag | Cross Body Multipurpose Hand Bag",
+            gender: "all",
+            category: "accessories",
+            category: "footwear",
+            size: [],
+            price: "₹299",
+            image: "/images/clothers/footwear6.webp"
+        },
+        {
+            id: 49,
+            title: "BRUTON Trendy & Stylish Running Shoes Sports Shoes For Men",
+            gender: "all",
+            category: "accessories",
+            category: "footwear",
+            size: [],
+            price: "₹399",
+            image: "/images/clothers/footwear7.webp"
+        },
+        {
+            id: 50,
+            title: "VORTEK Lightweight Breathable Sports Shoes for Men – Stylish Running",
+            gender: "all",
+            category: "accessories",
+            category: "footwear",
+            size: [],
+            price: "₹520",
+            image: "/images/clothers/footwear8.webp"
+        },
+        {
+            id: 51,
+            title: "Stylish Shoes For Men (TAN)",
+            gender: "all",
+            category: "accessories",
+            category: "footwear",
+            size: [],
+            price: "₹299",
+            image: "/images/clothers/footwear9.webp"
+        },
+        {
+            id: 52,
+            title: "Relaxed Attractive Men Sports Shoes",
+            gender: "all",
+            category: "accessories",
+            category: "footwear",
+            size: [],
+            price: "₹299",
+            image: "/images/clothers/footwear10.webp"
+        },
+        {
+            id: 53,
+            title: "Latest Graceful Men Formal Shoes",
+            gender: "all",
+            category: "accessories",
+            category: "footwear",
+            size: [],
+            price: "₹449",
+            image: "/images/clothers/footwear11.webp"
+        },
+        {
+            id: 54,
+            title: "Trendy Derby Black Formal Shoes",
+            gender: "all",
+            category: "accessories",
+            category: "footwear",
+            size: [],
+            price: "₹499",
+            image: "/images/clothers/footwear12.webp"
+        },
+        {
+            id: 55,
+            title: "New classy and multy colour sports and for women and girls",
+            gender: "all",
+            category: "accessories",
+            category: "footwear",
+            size: [],
+            price: "₹499",
+            image: "/images/clothers/footwear13.webp"
+        },
+        {
+            id: 56,
+            title: "Two Soft Women's Daily use comfortable stylish sandal type slippers/flipflop",
+            gender: "all",
+            category: "accessories",
+            category: "footwear",
+            size: [],
+            price: "₹199",
+            image: "/images/clothers/footwear14.webp"
+        },
+        {
+            id: 57,
+            title: "Stylish & Trending Sliper For WOMen",
+            gender: "all",
+            category: "accessories",
+            category: "footwear",
+            size: [],
+            price: "₹199",
+            image: "/images/clothers/footwear15.webp"
+        },
+        {
+            id: 58,
+            title: "Sky fuli 000",
+            gender: "all",
+            category: "accessories",
+            category: "footwear",
+            size: [],
+            price: "₹229",
+            image: "/images/clothers/footwear16.webp"
+        },
+        {
+            id: 59,
+            title: "Beautiful Comfortable Heels For Women's And Girls",
+            gender: "all",
+            category: "accessories",
+            category: "footwear",
+            size: [],
+            price: "₹299",
+            image: "/images/clothers/footwear17.webp"
+        },
+        {
+            id: 60,
+            title: "Alluring Women Heels",
+            gender: "all",
+            category: "accessories",
+            category: "footwear",
+            size: [],
+            price: "₹299",
+            image: "/images/clothers/footwear18.webp"
+        },
+        {
+            id: 61,
+            title: "Bersache Kids Casual Black Sandal For Kids (ORI-7020)",
+            gender: "all",
+            category: "accessories",
+            category: "footwear",
+            size: [],
+            price: "₹449",
+            image: "/images/clothers/footwear19.webp"
+        },
+    ];
+
+    // State
+    let selectedGender = "all";
+    let selectedCategory = "all";
+    let selectedSize = "M";
+    let viewMode = "grid";
+
+    // Elements
+    const genderTabs = document.querySelectorAll('.gender-tab');
+    const categoryTabs = document.querySelectorAll('.category-tab');
+    const sizeOptions = document.querySelectorAll('.size-option');
+    const viewOptions = document.querySelectorAll('.view-option');
+    const productGrid = document.querySelector('.product-grid');
+
+    // Gender tab click
+    genderTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            genderTabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            selectedGender = tab.dataset.gender;
+            renderProducts();
+        });
+    });
+
+    // Category tab click
+    categoryTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            categoryTabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            selectedCategory = tab.dataset.category;
+            renderProducts();
+        });
+    });
+
+    // Size option click
+    sizeOptions.forEach(option => {
+        option.addEventListener('click', () => {
+            sizeOptions.forEach(o => o.classList.remove('active'));
+            option.classList.add('active');
+            selectedSize = option.textContent.trim();
+            renderProducts();
+        });
+    });
+
+    // View option click
+    viewOptions.forEach(option => {
+        option.addEventListener('click', () => {
+            viewOptions.forEach(o => o.classList.remove('active'));
+            option.classList.add('active');
+            viewMode = option.dataset.view;
+            renderProducts();
+        });
+    });
+
+    // Render products
+    function renderProducts() {
+        // Filter products
+        let filtered = PRODUCTS.filter(product => {
+            // Gender
+            if (selectedGender !== "all" && product.gender !== selectedGender && product.gender !== "all") return false;
+            // Category
+            if (selectedCategory !== "all" && product.category !== selectedCategory) return false;
+            // Size
+            if (product.size.length && !product.size.includes(selectedSize)) return false;
+            return true;
+        });
+
+        // Clear previous
+        productGrid.innerHTML = "";
+        // Choose layout
+        productGrid.className = viewMode === "grid" ? "product-grid" : "product-list";
+
+        if (!filtered.length) {
+            productGrid.innerHTML = `<div style="grid-column:1/-1;text-align:center;color:#777;padding:30px 0;">No products found.</div>`;
+            return;
+        }
+
+        // Render
+        filtered.forEach(product => {
+            const card = document.createElement('div');
+            card.className = 'product-card show';
+
+            card.innerHTML = `
+                <div class="product-image">
+                    <img src="${product.image}" alt="${product.title}">
+                </div>
+                <div class="product-info">
+                    <div>
+                        <div class="product-title">${product.title}</div>
+                        <div class="product-meta">${capitalize(product.gender)} | ${capitalize(product.category)}</div>
+                        <div class="product-price">${product.price}</div>
+                    </div>
+                    <button class="btn-buy">Buy Now</button>
+                </div>
+            `;
+            productGrid.appendChild(card);
+        });
+    }
+
+    function capitalize(str) {
+        if (!str) return '';
+        return str[0].toUpperCase() + str.slice(1);
+    }
+
+    // Initial render
+    renderProducts();
+
+    // Scroll reveal for cards
+    function animateCardsOnScroll() {
+        document.querySelectorAll('.product-card').forEach(card => {
+            const rect = card.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 60) {
+                card.classList.add('show');
+            }
+        });
+    }
+    window.addEventListener('scroll', animateCardsOnScroll);
+
+    // Collection banner button
+    document.querySelector('.collection-banner .btn').addEventListener('click', function() {
+        window.scrollTo({top: document.querySelector('.category-products').offsetTop - 45, behavior: 'smooth'});
+    });
+    </script>
+</body>
+</html>

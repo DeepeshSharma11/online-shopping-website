@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmetics & Makeup | SDX Kard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+    :root {
+        --primary-color: #e91e63;
+        --secondary-color: #ff9800;
+        --accent-color: #ffb6c1;
+        --dark-color: #22223b;
+        --light-color: #fff0f6;
+        --text-color: #2d2d2d;
+        --text-light: #a6a6a6;
+        --border-radius: 14px;
+        --box-shadow: 0 8px 32px 0 rgba(233,30,99,0.08), 0 1.5px 6px 0 rgba(0,0,0,0.07);
+        --transition: all .3s cubic-bezier(.4,0,.2,1);
+        --star-color: #ff9800;
+    }
+
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(120deg, #fceabb 0%, #f8b500 100%);
+        color: var(--text-color);
+        min-height: 100vh;
+    }
+
+    .app-container {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* NAVBAR */
+    .main-header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: #fff;
+        box-shadow: var(--box-shadow);
+    }
+    .header-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 64px;
+    }
+    .logo {
+        font-size: 2.2rem;
+        font-weight: bold;
+        color: var(--primary-color);
+        letter-spacing: 1.5px;
+        text-shadow: 0 2px 12px #ffe4ee, 0 1px 2px #ffb6c1;
+    }
+    .main-nav ul {
+        display: flex;
+        gap: 18px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    .main-nav li {
+        position: relative;
+    }
+    .main-nav a {
+        color: var(--dark-color);
+        text-decoration: none;
+        font-weight: 500;
+        padding: 10px 16px;
+        border-radius: var(--border-radius);
+        transition: var(--transition);
+        font-size: 1.05rem;
+        display: block;
+    }
+    .main-nav a:hover,
+    .main-nav .active {
+        color: var(--primary-color);
+        background: #ffd6ee;
+    }
+    .main-nav .dropdown-menu {
+        display: none;
+        position: absolute;
+        left: 0;
+        top: 110%;
+        background: #fff;
+        min-width: 160px;
+        box-shadow: var(--box-shadow);
+        border-radius: var(--border-radius);
+        z-index: 100;
+    }
+    .main-nav li:hover .dropdown-menu,
+    .main-nav li:focus-within .dropdown-menu {
+        display: block;
+    }
+    .main-nav .dropdown-menu a {
+        padding: 10px 18px;
+        border-radius: 0;
+    }
+    .main-nav .dropdown-menu a:hover {
+        background: #fff0f7;
+        color: var(--primary-color);
+    }
+    .auth-actions .btn {
+        background: var(--primary-color);
+        color: #fff;
+        border: none;
+        border-radius: 18px;
+        padding: 7px 18px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: var(--transition);
+        margin-left: 12px;
+        box-shadow: 0 2px 12px #ffe1ef;
+    }
+    .auth-actions .btn:hover {
+        background: var(--secondary-color);
+        color: #fff;
+    }
+
+    /* HERO */
+    .category-hero {
+        background: linear-gradient(120deg, #fff0f6 60%, #ffe4ee 100%), url('https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=1200&q=80');
+        background-size: cover;
+        background-position: right top;
+        color: var(--primary-color);
+        text-align: center;
+        padding: 70px 15px 50px 15px;
+        position: relative;
+        border-radius: 0 0 26px 26px;
+        box-shadow: 0 8px 32px 0 rgba(233,30,99,0.11);
+        overflow: hidden;
+    }
+    .category-hero h1 {
+        font-size: 2.9rem;
+        margin-bottom: 10px;
+        letter-spacing: 1.5px;
+        text-shadow: 0 2px 12px #ffe4ee;
+        font-family: 'Segoe Script', 'Segoe UI', cursive, sans-serif;
+    }
+    .category-hero p {
+        font-size: 1.3rem;
+        color: var(--dark-color);
+        background: #fff9;
+        display: inline-block;
+        padding: 4px 18px;
+        border-radius: 20px;
+        margin-bottom: 16px;
+        font-weight: 500;
+    }
+    .category-hero .hero-sale-badge {
+        display: inline-block;
+        background: var(--primary-color);
+        color: #fff;
+        border-radius: 20px;
+        padding: 6px 24px;
+        font-weight: bold;
+        font-size: 1.12rem;
+        letter-spacing: 0.3px;
+        margin-top: 18px;
+        box-shadow: 0 2px 18px #f8b5d2;
+        animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+        0%, 100% { box-shadow: 0 2px 18px #f8b5d2, 0 0 0 0 var(--primary-color, #e91e63); }
+        50% { box-shadow: 0 2px 24px #f8b5d2, 0 0 0 14px #e91e6333; }
+    }
+
+    /* Category Tabs */
+    .cosmetic-categories {
+        margin: 38px auto 0 auto;
+        max-width: 1100px;
+        padding: 0 16px;
+    }
+    .category-tabs {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 15px;
+    }
+    .category-tab {
+        background: #fff;
+        border: 2px solid #ffe4ee;
+        color: var(--primary-color);
+        padding: 10px 24px;
+        border-radius: 28px;
+        font-size: 1.08rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: var(--transition);
+        margin-bottom: 8px;
+        box-shadow: 0 2px 10px #ffe1ef33;
+    }
+    .category-tab.active {
+        background: var(--primary-color);
+        color: #fff;
+        border-color: var(--primary-color);
+        box-shadow: 0 2px 10px #ffe1ef;
+        transform: scale(1.06);
+    }
+    .category-tab:hover {
+        border-color: var(--secondary-color);
+        color: var(--secondary-color);
+    }
+    .section-title {
+        margin: 0 0 18px 0;
+        text-align: center;
+        color: var(--dark-color);
+        font-size: 2.1rem;
+        font-family: 'Segoe UI Semibold', 'Segoe UI', Verdana, sans-serif;
+    }
+
+    /* Product Grid */
+    .cosmetic-products {
+        margin: 44px auto 0 auto;
+        max-width: 1200px;
+        padding: 0 18px;
+    }
+    .product-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 30px;
+        margin-top: 10px;
+    }
+    .product-card {
+        background: linear-gradient(130deg, #fff0f6 0%, #ffe4ee 100%);
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+        overflow: hidden;
+        transition: var(--transition);
+        display: flex;
+        flex-direction: column;
+        min-height: 350px;
+        position: relative;
+        opacity: 0;
+        transform: translateY(40px);
+        animation: fadeInCard 0.7s forwards;
+    }
+    .product-card.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .product-card:hover, .product-card:focus-within {
+        box-shadow: 0 7px 28px #ffd6ee;
+        transform: scale(1.04);
+        border: 2px solid var(--primary-color);
+        z-index: 2;
+    }
+    .product-image {
+        width: 100%;
+        height: 170px;
+        background: #fff8fa;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        border-radius: 0 0 30px 30px;
+        border-bottom: 2px solid #ffe4ee;
+    }
+    .product-image img {
+        width: 90%;
+        height: 100%;
+        object-fit: contain;
+        transition: transform .25s;
+        filter: drop-shadow(0 4px 16px #ffe4ee);
+    }
+    .product-card:hover .product-image img {
+        transform: scale(1.08) rotate(-4deg);
+    }
+    .product-info {
+        padding: 22px 18px 16px 18px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .product-title {
+        font-size: 1.17rem;
+        font-weight: 700;
+        margin-bottom: 8px;
+        color: var(--primary-color);
+        letter-spacing: 0.03em;
+        font-family: 'Segoe Print', 'Segoe UI', cursive, sans-serif;
+    }
+    .product-meta {
+        color: var(--secondary-color);
+        font-size: 0.99rem;
+        margin-bottom: 7px;
+        font-weight: 600;
+    }
+    .product-price {
+        color: var(--secondary-color);
+        font-size: 1.11rem;
+        font-weight: 700;
+        margin-bottom: 14px;
+    }
+    .product-rating {
+        margin-bottom: 8px;
+        font-size: 1.1rem;
+    }
+    .product-rating .fa-star {
+        color: var(--star-color);
+        margin-right: 1px;
+    }
+    .btn-buy {
+        background: var(--primary-color);
+        color: #fff;
+        border: none;
+        border-radius: 22px;
+        padding: 10px 26px;
+        font-size: 1.08rem;
+        cursor: pointer;
+        margin-top: auto;
+        transition: var(--transition);
+        font-weight: bold;
+        box-shadow: 0 2px 10px #ffe1ef33;
+        letter-spacing: 0.02em;
+    }
+    .btn-buy:hover {
+        background: var(--secondary-color);
+        color: #fff;
+    }
+
+    /* Bottom Navigation */
+    .bottom-nav {
+        height: 56px;
+        background: #fff;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.04);
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 100;
+    }
+
+    /* FOOTER */
+    .footer {
+        background: #222;
+        color: #fff;
+        padding: 36px 0 18px 0;
+        text-align: center;
+        margin-top: 48px;
+    }
+    .footer .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 18px;
+        padding: 0 18px;
+    }
+    .footer-column {
+        flex: 1 1 180px;
+        min-width: 160px;
+        text-align: left;
+    }
+    .footer-column h4 {
+        margin-bottom: 10px;
+        color: var(--primary-color);
+        font-size: 1.07rem;
+        letter-spacing: 1px;
+    }
+    .footer-column ul {
+        list-style: none;
+        padding: 0;
+        font-size: 0.98rem;
+        color: #e0e0e0;
+    }
+    .footer-column ul li {
+        margin-bottom: 8px;
+    }
+    .footer-column ul li a {
+        color: #e0e0e0;
+        text-decoration: none;
+        transition: color .2s;
+    }
+    .footer-column ul li a:hover {
+        color: var(--secondary-color);
+    }
+    .footer-social {
+        margin-top: 16px;
+    }
+    .footer-social a {
+        color: #fff;
+        margin: 0 8px;
+        font-size: 1.2rem;
+        transition: color .2s;
+    }
+    .footer-social a:hover {
+        color: var(--secondary-color);
+    }
+    .footer-copyright {
+        margin-top: 24px;
+        font-size: 0.97rem;
+        color: #aaa;
+    }
+    a{
+        text-decoration: none;
+    }
+
+    /* Animations */
+    @keyframes fadeInCard { to { opacity: 1; transform: translateY(0);}}
+    @media (max-width: 900px) {
+        .header-container { flex-direction: column; height: auto; padding: 8px 6vw;}
+        .cosmetic-categories, .cosmetic-products { max-width: 97vw; }
+        .product-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 18px;}
+        .category-hero { padding-top: 36px; padding-bottom: 28px;}
+        .footer-content { flex-direction: column; text-align: center;}
+        .footer-column { min-width: 0;}
+    }
+    @media (max-width: 600px) {
+        .category-hero h1 { font-size: 2rem; }
+        .product-grid { gap: 9px; }
+        .category-hero { padding-top: 24px; padding-bottom: 14px; }
+        .section-title { font-size: 1.2rem;}
+        .product-card { min-height: 220px; }
+        .footer { padding: 24px 0 10px 0;}
+    }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- NAVBAR -->
+        <header class="main-header">
+            <div class="header-container">
+                <div class="logo">SDX Kard</div>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li>
+                            <a href="#">Shop <i class="fas fa-chevron-down" style="font-size:0.75em;"></i></a>
+                            <div class="dropdown-menu">
+                                <a href="cosmetic.html" class="active">Cosmetic & Makeup</a>
+                                <a href="clothings.html">Clothing & Footwear</a>
+                                <a href="gym.html">GYM Products</a>
+                                <a href="home-decor.html">Home Decoration</a>
+                                <a href="electronics.html">Electronics</a>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#">Pages <i class="fas fa-chevron-down" style="font-size:0.75em;"></i></a>
+                            <div class="dropdown-menu">
+                                <a href="#">About</a>
+                                <a href="#">Contact</a>
+                                <a href="#">FAQs</a>
+                                <a href="#">Privacy</a>
+                            </div>
+                        </li>
+                        <li><a href="#">Deals</a></li>
+                    </ul>
+                </nav>
+                <div class="auth-actions">
+                    <button class="btn"><a href="index.html#sign_section" style="color:white;" >Sign in </a></button>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <!-- HERO -->
+            <section class="category-hero">
+                <h1>Cosmetics & Makeup</h1>
+                <p>Unleash your beauty with trending products and glam deals</p>
+                <span class="hero-sale-badge">UPTO 50% OFF on Bestsellers!</span>
+            </section>
+            <!-- Cosmetic Categories -->
+            <section class="cosmetic-categories">
+                <h2 class="section-title">Shop by Category</h2>
+                <div class="category-tabs">
+                    <button class="category-tab active" data-category="all">All</button>
+                    <button class="category-tab" data-category="face">Face</button>
+                    <button class="category-tab" data-category="eyes">Eyes</button>
+                    <button class="category-tab" data-category="lips">Lips</button>
+                    <button class="category-tab" data-category="skincare">Skin Care</button>
+                    <button class="category-tab" data-category="tools">Tools</button>
+                </div>
+            </section>
+            <!-- Cosmetic Products -->
+            <section class="cosmetic-products">
+                <h2 class="section-title">Featured Cosmetics</h2>
+                <div class="product-grid"></div>
+            </section>
+        </main>
+
+        <!-- Footer Navigation -->
+        <nav class="bottom-nav">
+            <a href="index.html"><i class="fas fa-home"></i></a>
+            <a href="#"><i class="fas fa-search"></i></a>
+            <a href="#"><i class="fas fa-shopping-cart"></i></a>
+            <a href="#"><i class="fas fa-user"></i></a>
+        </nav>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>SDX Kard</h4>
+                    <ul>
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Shipping</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="cosmetic.html">Cosmetics & Makeup</a></li>
+                        <li><a href="clothings.html">Clothing & Footwear</a></li>
+                        <li><a href="home-decor.html">Home Decoration</a></li>
+                        <li><a href="electronics.html">Electronics</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Follow Us</h4>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                &copy; 2025 SDX Kard. All rights reserved.
+            </div>
+        </footer>
+    </div>
+    <script>
+    // Demo product data
+    const COSMETIC_PRODUCTS = [
+        {
+            id: 1,
+            title: "MAYBELLINE NEW YORK Colossal Kajal",
+            category: "face",
+            price: "₹259",
+            image: "/images/cosmetic/kkajal.webp",
+            meta: "Face Base",
+            rating: 4.5
+        },
+        {
+            id: 2,
+            title: "Lakmé Color Crush Nailart M1",
+            category: "face",
+            price: "₹259",
+            image: "/images/cosmetic/Lakme-Color-Nail.jpg",
+            meta: "Shine",
+            rating: 4.0
+        },
+        {
+            id: 3,
+            title: "Seven Seas FINE TOUCH FOUNDATION",
+            category: "eyes",
+            price: "₹159",
+            image: "/images/cosmetic/foundation_3.jpeg",
+            meta: "Eyes",
+            rating: 4.7
+        },
+        {
+            id: 4,
+            title: "Sunisa waterproof CC Cream Foundation ",
+            category: "lips",
+            price: "₹269",
+            image: "/images/cosmetic/foundation_2.webp",
+            meta: "Lips",
+            rating: 4.3
+        },
+        {
+            id: 5,
+            title: "Glam21 TOUCH OIL-FREE-SILK Foundation",
+            category: "skincare",
+            price: "₹299",
+            image: "/images/cosmetic/foundation.webp",
+            meta: "Skin Care",
+            rating: 4.6
+        },
+        {
+            id: 6,
+            title: "Makeup Combo Kit Beauty Package",
+            category: "tools",
+            price: "₹499",
+            image: "/images/cosmetic/Makeup_Combo.jpeg",
+            meta: "Tools & Devices",
+            rating: 4.8
+        },
+        {
+            id: 7,
+            title: "Makeup Brush Applicator Set",
+            category: "tools",
+            price: "₹299",
+            image: "/images/cosmetic/brush_img.jpeg",
+            meta: "Tools & Devices",
+            rating: 4.8
+        },
+        {
+            id: 8,
+            title: "JOVEES Clarifying Fairness Face WashM",
+            category: "tools",
+            price: "₹259",
+            image: "/images/cosmetic/facewash.jpeg",
+            meta: "Tools & Devices",
+            rating: 4.8
+        },
+        {
+            id: 9,
+            title: "GLOW& LOVELY INSTANT Face Wash(50 g)",
+            category: "tools",
+            price: "₹259",
+            image: "/images/cosmetic/GLOW-LOVELY.jpg",
+            meta: "Tools & Devices",
+            rating: 4.8
+        },
+        {
+            id: 10,
+            title: "RTB Combo of Matte Lipstick",
+            category: "tools",
+            price: "₹269",
+            image: "/images/cosmetic/lipstick.webp",
+            meta: "Tools & Devices",
+            rating: 4.8
+        },
+        {
+            id: 11,
+            title: "Cosmetic Heaven's Crazy MIX",
+            category: "tools",
+            price: "₹189",
+            image: "/images/cosmetic/heaven-lips.webp",
+            meta: "Tools & Devices",
+            rating: 4.8
+        },
+        {
+            id: 12,
+            title: "JEMOX Beauty Liquid Matte Red Lipstick Set of 4",
+            category: "tools",
+            price: "₹159",
+            image: "/images/cosmetic/lipstick-4.webp",
+            meta: "Tools & Devices",
+            rating: 4.8
+        } 
+    ];
+
+    let selectedCategory = "all";
+    const categoryTabs = document.querySelectorAll('.category-tab');
+    const productGrid = document.querySelector('.product-grid');
+
+    // Category tab click
+    categoryTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            categoryTabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            selectedCategory = tab.dataset.category;
+            renderProducts();
+        });
+    });
+
+    // Render products
+    function renderProducts() {
+        let filtered = COSMETIC_PRODUCTS.filter(product =>
+            selectedCategory === "all" || product.category === selectedCategory
+        );
+        productGrid.innerHTML = "";
+
+        if (!filtered.length) {
+            productGrid.innerHTML = `<div style="grid-column:1/-1;text-align:center;color:#777;padding:30px 0;">No products found.</div>`;
+            return;
+        }
+
+        filtered.forEach(product => {
+            const card = document.createElement('div');
+            card.className = 'product-card show';
+            card.innerHTML = `
+                <div class="product-image">
+                    <img src="${product.image}" alt="${product.title}">
+                </div>
+                <div class="product-info">
+                    <div>
+                        <div class="product-title">${product.title}</div>
+                        <div class="product-meta">${product.meta}</div>
+                        <div class="product-price">${product.price}</div>
+                        <div class="product-rating">${starRating(product.rating)}</div>
+                    </div>
+                    <button class="btn-buy">Buy Now</button>
+                </div>
+            `;
+            productGrid.appendChild(card);
+        });
+    }
+
+    function starRating(rating) {
+        const full = Math.floor(rating);
+        const half = rating % 1 >= 0.5 ? 1 : 0;
+        let html = '';
+        for (let i = 0; i < full; i++) html += '<i class="fas fa-star"></i>';
+        if (half) html += '<i class="fas fa-star-half-alt"></i>';
+        for (let i = 0; i < 5 - full - half; i++) html += '<i class="far fa-star"></i>';
+        return html + ` <span style="font-size:0.98em;color:#a6a6a6">(${rating})</span>`;
+    }
+
+    // Initial render
+    renderProducts();
+
+    // Scroll reveal for cards
+    function animateCardsOnScroll() {
+        document.querySelectorAll('.product-card').forEach(card => {
+            const rect = card.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 60) {
+                card.classList.add('show');
+            }
+        });
+    }
+    window.addEventListener('scroll', animateCardsOnScroll);
+    </script>
+</body>
+</html>

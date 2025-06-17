@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Store | SDX Kard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+    :root {
+        --primary-color: #00bcd4;
+        --secondary-color: #ff6f00;
+        --accent-color: #ff4081;
+        --dark-color: #263238;
+        --light-color: #f5f5f5;
+        --text-color: #222;
+        --text-light: #777;
+        --border-radius: 10px;
+        --box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+        --transition: all .3s cubic-bezier(.4,0,.2,1);
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: #fafbfc;
+        color: var(--text-color);
+        margin: 0;
+    }
+
+    .app-container {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* NAVBAR */
+    .main-header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: #fff;
+        box-shadow: var(--box-shadow);
+    }
+    .header-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 64px;
+    }
+    .logo {
+        font-size: 1.7rem;
+        font-weight: bold;
+        color: var(--primary-color);
+        letter-spacing: 1px;
+    }
+    .main-nav ul {
+        display: flex;
+        gap: 18px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    .main-nav li {
+        position: relative;
+    }
+    .main-nav a {
+        color: var(--dark-color);
+        text-decoration: none;
+        font-weight: 500;
+        padding: 10px 14px;
+        border-radius: var(--border-radius);
+        transition: var(--transition);
+        font-size: 1.05rem;
+        display: block;
+    }
+    .main-nav a:hover,
+    .main-nav .active {
+        color: var(--secondary-color);
+        background: #f7f7f7;
+    }
+    .main-nav .dropdown-menu {
+        display: none;
+        position: absolute;
+        left: 0;
+        top: 110%;
+        background: #fff;
+        min-width: 160px;
+        box-shadow: var(--box-shadow);
+        border-radius: var(--border-radius);
+        z-index: 100;
+    }
+    .main-nav li:hover .dropdown-menu,
+    .main-nav li:focus-within .dropdown-menu {
+        display: block;
+    }
+    .main-nav .dropdown-menu a {
+        padding: 10px 18px;
+        border-radius: 0;
+    }
+    .main-nav .dropdown-menu a:hover {
+        background: #f5f5f5;
+        color: var(--secondary-color);
+    }
+    .auth-actions .btn {
+        background: var(--primary-color);
+        color: #fff;
+        border: none;
+        border-radius: 18px;
+        padding: 7px 18px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: var(--transition);
+        margin-left: 12px;
+    }
+    .auth-actions .btn:hover {
+        background: var(--secondary-color);
+    }
+
+    /* Hero Section */
+    .category-hero {
+        background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1588776814546-ec7e5563bd47?auto=format&fit=crop&w=1200&q=80');
+        background-size: cover;
+        background-position: center;
+        color: #fff;
+        text-align: center;
+        padding: 60px 15px 40px 15px;
+        position: relative;
+    }
+    .category-hero h1 {
+        font-size: 2.6rem;
+        margin-bottom: 7px;
+        letter-spacing: 1px;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .category-hero p {
+        font-size: 1.2rem;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.18);
+    }
+
+    .medical-categories,
+    .medical-products {
+        margin: 32px auto 0 auto;
+        max-width: 1200px;
+        padding: 0 16px;
+    }
+    .category-tabs {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 15px;
+    }
+    .category-tab {
+        background: #fff;
+        border: 1.5px solid #eee;
+        color: var(--text-color);
+        padding: 8px 22px;
+        border-radius: 24px;
+        font-size: 1.03rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: var(--transition);
+        margin-bottom: 8px;
+    }
+    .category-tab.active {
+        background: var(--primary-color);
+        color: #fff;
+        border-color: var(--primary-color);
+        box-shadow: 0 2px 6px rgba(0,188,212,.11);
+    }
+    .category-tab:hover {
+        border-color: var(--secondary-color);
+        color: var(--secondary-color);
+    }
+    .section-title {
+        margin: 0 0 18px 0;
+        text-align: center;
+        color: var(--dark-color);
+        font-size: 2rem;
+    }
+
+    /* Product Grid */
+    .medical-products {
+        margin-top: 40px;
+    }
+    .product-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 28px;
+        margin-top: 10px;
+    }
+    .product-card {
+        background: #fff;
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+        overflow: hidden;
+        transition: var(--transition);
+        display: flex;
+        flex-direction: column;
+        min-height: 340px;
+        position: relative;
+        opacity: 0;
+        transform: translateY(40px);
+        animation: fadeInCard 0.6s forwards;
+    }
+    .product-card.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .product-card:hover, .product-card:focus-within {
+        box-shadow: 0 7px 24px rgba(0,0,0,0.13);
+        transform: scale(1.02);
+    }
+    .product-image {
+        width: 100%;
+        height: 180px;
+        background: #f5f6fa;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+    .product-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform .25s;
+    }
+    .product-card:hover .product-image img {
+        transform: scale(1.05);
+    }
+    .product-info {
+        padding: 18px 16px 12px 16px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .product-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 7px;
+        color: var(--dark-color);
+    }
+    .product-meta {
+        color: var(--text-light);
+        font-size: 0.97rem;
+        margin-bottom: 6px;
+    }
+    .product-price {
+        color: var(--secondary-color);
+        font-size: 1.07rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+    .btn-buy {
+        background: var(--primary-color);
+        color: #fff;
+        border: none;
+        border-radius: 20px;
+        padding: 8px 14px;
+        font-size: 1rem;
+        cursor: pointer;
+        margin-top: auto;
+        transition: var(--transition);
+    }
+    .btn-buy:hover {
+        background: var(--secondary-color);
+    }
+
+    /* Bottom Navigation */
+    .bottom-nav {
+        height: 56px;
+        background: #fff;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.04);
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 100;
+    }
+
+    /* FOOTER */
+    .footer {
+        background: #222;
+        color: #fff;
+        padding: 36px 0 18px 0;
+        text-align: center;
+        margin-top: 48px;
+    }
+    .footer .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 18px;
+        padding: 0 18px;
+    }
+    .footer-column {
+        flex: 1 1 180px;
+        min-width: 160px;
+        text-align: left;
+    }
+    .footer-column h4 {
+        margin-bottom: 10px;
+        color: var(--primary-color);
+        font-size: 1.07rem;
+        letter-spacing: 1px;
+    }
+    .footer-column ul {
+        list-style: none;
+        padding: 0;
+        font-size: 0.98rem;
+        color: #e0e0e0;
+    }
+    .footer-column ul li {
+        margin-bottom: 8px;
+    }
+    .footer-column ul li a {
+        color: #e0e0e0;
+        text-decoration: none;
+        transition: color .2s;
+    }
+    .footer-column ul li a:hover {
+        color: var(--secondary-color);
+    }
+    .footer-social {
+        margin-top: 16px;
+    }
+    .footer-social a {
+        color: #fff;
+        margin: 0 8px;
+        font-size: 1.2rem;
+        transition: color .2s;
+    }
+    .footer-social a:hover {
+        color: var(--secondary-color);
+    }
+    .footer-copyright {
+        margin-top: 24px;
+        font-size: 0.97rem;
+        color: #aaa;
+    }
+    a{
+        text-decoration: none;
+    }
+
+    /* Animations */
+    @keyframes fadeInCard {
+        to { opacity: 1; transform: translateY(0);}
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+        .header-container { flex-direction: column; height: auto; padding: 8px 6vw;}
+        .medical-categories, .medical-products { max-width: 97vw; }
+        .product-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 18px;}
+        .category-hero { padding-top: 36px; padding-bottom: 28px;}
+        .footer-content { flex-direction: column; text-align: center;}
+        .footer-column { min-width: 0;}
+    }
+    @media (max-width: 600px) {
+        .category-hero h1 { font-size: 2rem; }
+        .product-grid { gap: 9px; }
+        .category-hero { padding-top: 24px; padding-bottom: 14px; }
+        .section-title { font-size: 1.2rem;}
+        .product-card { min-height: 220px; }
+        .footer { padding: 24px 0 10px 0;}
+    }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- NAVBAR -->
+        <header class="main-header">
+            <div class="header-container">
+                <div class="logo">SDX Kard</div>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li>
+                            <a href="#">Shop <i class="fas fa-chevron-down" style="font-size:0.75em;"></i></a>
+                            <div class="dropdown-menu">
+                                <a href="clothings.html">Clothing & Footwear</a>
+                                <a href="gym.html">GYM Products</a>
+                                <a href="home-decor.html">Home Decoration</a>
+                                <a href="electronics.html">Electronics</a>
+                                <a href="medical.html" class="active">Medical Store</a>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#">Pages <i class="fas fa-chevron-down" style="font-size:0.75em;"></i></a>
+                            <div class="dropdown-menu">
+                                <a href="#">About</a>
+                                <a href="#">Contact</a>
+                                <a href="#">FAQs</a>
+                                <a href="#">Privacy</a>
+                            </div>
+                        </li>
+                        <li><a href="#">Deals</a></li>
+                    </ul>
+                </nav>
+                <div class="auth-actions">
+                    <button class="btn"><a href="index.html#sign_section" style="color:white;" >Sign in </a></button>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <!-- HERO -->
+            <section class="category-hero">
+                <h1>Medical Store</h1>
+                <p>Your one-stop shop for health essentials</p>
+            </section>
+            <!-- Medical Categories -->
+            <section class="medical-categories">
+                <h2 class="section-title">Shop by Category</h2>
+                <div class="category-tabs">
+                    <button class="category-tab active" data-category="all">All</button>
+                    <button class="category-tab" data-category="medicines">Medicines</button>
+                    <button class="category-tab" data-category="personal">Personal Care</button>
+                    <button class="category-tab" data-category="devices">Medical Devices</button>
+                    <button class="category-tab" data-category="supplements">Supplements</button>
+                </div>
+            </section>
+            <!-- Medical Products -->
+            <section class="medical-products">
+                <h2 class="section-title">Best Sellers</h2>
+                <div class="product-grid"></div>
+            </section>
+        </main>
+
+        <!-- Footer Navigation -->
+        <nav class="bottom-nav">
+            <a href="index.html"><i class="fas fa-home"></i></a>
+            <a href="#"><i class="fas fa-search"></i></a>
+            <a href="#"><i class="fas fa-shopping-cart"></i></a>
+            <a href="#"><i class="fas fa-user"></i></a>
+        </nav>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>SDX Kard</h4>
+                    <ul>
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Shipping</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="clothings.html">Clothing & Footwear</a></li>
+                        <li><a href="gym.html">GYM Products</a></li>
+                        <li><a href="home-decor.html">Home Decoration</a></li>
+                        <li><a href="medical.html">Medical Store</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Follow Us</h4>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                &copy; 2025 SDX Kard. All rights reserved.
+            </div>
+        </footer>
+    </div>
+    <script>
+    // Demo product data
+    const MEDICAL_PRODUCTS = [
+        {
+            id: 1,
+            title: "FIJ AYURVEDA Power Shilajit Capsule for Sexual Health | Shilajit Capsule",
+            category: "medicines",
+            price: "₹399",
+            image: "/images/medicine/medicine1.webp",
+            meta: "Medicines"
+        },
+        {
+            id: 2,
+            title: "Digital Thermometer",
+            category: "devices",
+            price: "₹195",
+            image: "https://images.unsplash.com/photo-1512069772995-ec65ed45afd6?auto=format&fit=crop&w=400&q=80",
+            meta: "Medical Devices"
+        },
+        {
+            id: 3,
+            title: "Vitamin C Tablets",
+            category: "supplements",
+            price: "₹149",
+            image: "/images/medicine/medicine3.jpg",
+            meta: "Supplements"
+        },
+        {
+            id: 4,
+            title: "Hand Sanitizer",
+            category: "personal",
+            price: "149",
+            image: "/images/medicine/medicine4.jpeg",
+            meta: "Personal Care"
+        },
+        {
+            id: 5,
+            title: "Blood Pressure Monitor",
+            category: "devices",
+            price: "₹1,299",
+            image: "https://images.unsplash.com/photo-1512069772995-ec65ed45afd6?auto=format&fit=crop&w=400&q=80",
+            meta: "Medical Devices"
+        },
+        {
+            id: 6,
+            title: "Face Mask Pack",
+            category: "personal",
+            price: "₹99",
+            image: "/images/medicine/mask.webp",
+            meta: "Personal Care"
+        }
+    ];
+
+    let selectedCategory = "all";
+    const categoryTabs = document.querySelectorAll('.category-tab');
+    const productGrid = document.querySelector('.product-grid');
+
+    // Category tab click
+    categoryTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            categoryTabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            selectedCategory = tab.dataset.category;
+            renderProducts();
+        });
+    });
+
+    // Render products
+    function renderProducts() {
+        let filtered = MEDICAL_PRODUCTS.filter(product => selectedCategory === "all" || product.category === selectedCategory);
+        productGrid.innerHTML = "";
+
+        if (!filtered.length) {
+            productGrid.innerHTML = `<div style="grid-column:1/-1;text-align:center;color:#777;padding:30px 0;">No products found.</div>`;
+            return;
+        }
+
+        filtered.forEach(product => {
+            const card = document.createElement('div');
+            card.className = 'product-card show';
+            card.innerHTML = `
+                <div class="product-image">
+                    <img src="${product.image}" alt="${product.title}">
+                </div>
+                <div class="product-info">
+                    <div>
+                        <div class="product-title">${product.title}</div>
+                        <div class="product-meta">${product.meta}</div>
+                        <div class="product-price">${product.price}</div>
+                    </div>
+                    <button class="btn-buy">Buy Now</button>
+                </div>
+            `;
+            productGrid.appendChild(card);
+        });
+    }
+
+    // Initial render
+    renderProducts();
+
+    // Scroll reveal for cards
+    function animateCardsOnScroll() {
+        document.querySelectorAll('.product-card').forEach(card => {
+            const rect = card.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 60) {
+                card.classList.add('show');
+            }
+        });
+    }
+    window.addEventListener('scroll', animateCardsOnScroll);
+    </script>
+</body>
+</html>
