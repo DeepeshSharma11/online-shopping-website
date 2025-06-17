@@ -9,20 +9,20 @@
 <body>
     <header>
         <div class="privious_header">
-            <div class="first_box">Online Shopping Store </div>
+            <div class="first_box" onclick="document.getElementById('main-section').scrollIntoView({ behavior: 'smooth' });">Online Shopping Store </div>
             <div class="container">
                 <ul>
                     <li class="dropdown">
-                        <a href="home">home</a>
+                        <a href="index.html">Home</a>
                         <div class="dropdown-table">
-                            <a href="clothes.html">Clothes</a>
+                            <a href="clothers.html">Clothes</a>
                             <a href="electronics.html">Electronics</a>
                             <a href="shoes.html">Shoes</a>
                             <a href="accessories.html">Accessories</a>
                         </div>
                     </li>
                     <li  class="dropdown">
-                        <a href="shop">shop</a>
+                        <a href="shop">Shop</a>
                         <div class="dropdown-table">
                             <a href="top-rated.html">Top Rated</a>
                             <a href="trending.html">Trending Now</a>
@@ -32,7 +32,7 @@
                         </div>
                     </li>
                     <li  class="dropdown">
-                        <a href="page">page</a>
+                        <a href="page">Page</a>
                         <div class="dropdown-table">
                             <a href="about.html">About</a>
                             <a href="contact.html">Contact</a>
@@ -54,7 +54,7 @@
                         </div>
                     </li>
                      <li  class="dropdown">
-                        <a href="elemants">elements</a>
+                        <a href="elemants">Elements</a>
                         <div class="dropdown-table">
                             <a href="buttons.html">Buttons</a>
                             <a href="forms.html">Forms</a>
@@ -64,7 +64,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="second_box">sign in</div>
+            <div class="second_box" onclick="document.getElementById('sign_section').scrollIntoView({ behavior: 'smooth' });">sign in</div>
         </div>
     </header>
     <main>
@@ -73,7 +73,7 @@
                 <div class="hero-content">
                     <h1>Welcome to SDX kard</h1>
                     <p>Best Deals. Best Quality. Best You!</p>
-                    <button>Shop Now</button>
+                    <button onclick="document.getElementById('main-section').scrollIntoView({ behavior: 'smooth' });">Shop Now</button>
                 </div>
                 <div class="line">
                     <h1>Start Selling With SDX kard Store</h1>
@@ -84,42 +84,42 @@
             </div>
         </section>
     </main>
-    <main class="feature-section">
+    <main class="feature-section" id="main-section">
         <div class="features-grid">
             <div class="feature-box">
                 <div class="product-image">
-                    <img src="image2.webp" alt="Product 1">
-                    <a href="product1.html" class="show-btn">Consmetic</a>
+                    <img src="/images/frant.page/image2.webp" alt="Product 1">
+                    <a href="CosmeticProducts.html" class="show-btn">Consmetic</a>
                 </div>
             </div>
 
             <div class="feature-box">
                 <div class="product-image">
-                    <img src="image3.jpg" alt="Product 2">
-                    <a href="product2.html" class="show-btn">GYM Product</a>
+                    <img src="/images/frant.page/image3.jpg" alt="Product 2">
+                    <a href="gym.html" class="show-btn">GYM Product</a>
                 </div>
             </div>
             <div class="feature-box">
                 <div class="product-image">
-                    <img src="image4.jpg" alt="Product 3">
-                    <a href="product3.html" class="show-btn">Home Decarotion</a>
+                    <img src="/images/frant.page/image4.jpg" alt="Product 3">
+                    <a href="home_decoration.html" class="show-btn">Home Decoration</a>
                 </div>
             </div>
             <div class="feature-box">
                 <div class="product-image">
-                    <img src="image5.jpg" alt="Product 4">
-                    <a href="product4.html" class="show-btn">Clothers & footwear</a>
+                    <img src="/images/frant.page/image5.jpg" alt="Product 4">
+                    <a href="clothers.html" class="show-btn">Clothers & footwear</a>
                 </div>
             </div>
             <div class="feature-box">
                 <div class="product-image">
-                    <img src="image6.png" alt="Product 5" background-size="auto">
-                    <a href="product4.html" class="show-btn">Medical store</a>
+                    <img src="/images/frant.page/image6.png" alt="Product 5" background-size="auto">
+                    <a href="medicine.html" class="show-btn">Medical store</a>
                 </div>
             </div>
         </div>
     </main>
-    <section class="signin-section">
+    <section class="signin-section" id="sign_section">
         <div class="signin-box">
             <h2>Sign In</h2>
             <form action="#" method="post">
@@ -141,13 +141,53 @@
             <span class="star" data-value="5">&#9733;</span>
         </div>
         <p class="rating-text"></p>
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>SDX Kard</h4>
+                <ul>
+                    <li><a href="#">About us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Customer Service</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Shipping</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Categories</h4>
+                <ul>
+                    <li><a href="#">Clothing & Footwear</a></li>
+                    <li><a href="#">Electronics</a></li>
+                    <li><a href="#">Home & Living</a></li>
+                    <li><a href="#">Accessories</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Follow Us</h4>
+                <div class="footer-social">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            &copy; 2025 SDX Kard. All rights reserved.
+        </div>
+    </footer>
     </section>
-
 
 <script src="script.js"></script>
 </body>
 </html>
-
 
 
 
